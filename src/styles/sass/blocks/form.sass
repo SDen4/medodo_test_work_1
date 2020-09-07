@@ -1,8 +1,63 @@
-.wrapper
-    color: $default-color
-    background-image: url('/assets/images/2.jpg')
+.form
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 80%
+    height: 80%
+    min-height: 500px
+    background-color: $formBGColor
+    border: 2px solid $formBorderColor
+    border-radius: 15px
+
+.form__wrapper
+    width: 95%
+    height: 95%
+
+.form__title
+    margin-bottom: 40px
+
+.form__form
+    display: flex
+    flex-direction: column
     width: 100%
-    height: 500px
-    // @include tablet {
-    //     color: $main-color;
-    // };
+    height: 100%
+
+.form__label
+    display: flex
+    justify-content: space-between
+    position: relative
+    width: 80%
+    margin: 0 0 30px 20px
+    &::after
+        content: ""
+        display: block
+        width: 100%
+        height: 1px
+        background-color: $formBorderColor
+        position: absolute
+        bottom: -7px
+        left: 0
+
+.form__subtitle
+    position: relative
+    margin-right: 20px
+
+.form__subtitle_required
+    &::after
+        content: "*"
+        display: block
+        position: absolute
+        top: -2px
+        right: -9px
+        color: $mainRed
+
+
+.form__input
+    width: 65%
+    border: 0
+    border-radius: 3px
+    outline: none
+    padding: 5px 10px
+    &::placeholder
+        text-align: center
