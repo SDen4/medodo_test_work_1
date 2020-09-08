@@ -3,7 +3,7 @@
     flex-direction: column
     justify-content: center
     align-items: center
-    width: 80%
+    width: 70%
     height: 80%
     min-height: 500px
     background-color: $formBGColor
@@ -11,8 +11,7 @@
     border-radius: 15px
 
 .form__wrapper
-    width: 95%
-    height: 95%
+    margin: 20px
 
 .form__title
     margin-bottom: 40px
@@ -23,12 +22,20 @@
     width: 100%
     height: 100%
 
+.form__block
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    margin: 0 30px 20px
+    &:last-child
+        margin: 0 30px
+
 .form__label
     display: flex
     justify-content: space-between
     position: relative
-    width: 80%
-    margin: 0 0 30px 20px
+    width: 47%
+    margin-bottom: 30px
     &::after
         content: ""
         display: block
@@ -38,6 +45,9 @@
         position: absolute
         bottom: -7px
         left: 0
+
+.form__label_checkbox
+    width: 24%
 
 .form__subtitle
     position: relative
@@ -54,10 +64,40 @@
 
 
 .form__input
-    width: 65%
+    width: 50%
     border: 0
     border-radius: 3px
     outline: none
     padding: 5px 10px
+    transition: $transitionDuration
     &::placeholder
         text-align: center
+    &:hover
+        background-color: $inputBGColorHover
+
+.form__input_checkbox
+    width: fit-content
+
+.form__input_radio
+    width: fit-content
+    margin-right: 40px
+
+.form__input_block
+    display: flex
+    width: 50%
+    padding: 5px 20px 5px 0;
+
+.form__subtitle_small
+    margin-right: 10px
+
+.form__select_client
+    width: 54%
+    background-color: $selectBGColor
+
+.form__input_small
+    margin-right: 40px
+
+.form__button_wrapper
+    width: 100%
+    display: flex
+    justify-content: space-between
