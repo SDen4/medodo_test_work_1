@@ -4,22 +4,32 @@
             <h1 class="form__title">Добавить нового клиента</h1>
             <form class="form__form" @submit.prevent="handleSubmit">
                 <div class="form__block">
-                    <label class="form__label">
-                        <div class="form__subtitle form__subtitle_required">Фамилия</div>
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.surname.$dirty && !$v.patient.surname.required)}"
+                    >
+                        <div 
+                            class="form__subtitle form__subtitle_required"
+                        >Фамилия</div>
                         <input
                             class="form__input"
                             placeholder="Введите фамилию"
                             type="text"
-                            v-model="patient.surname"
+                            v-model.trim="patient.surname"
+                            :class="{form__input_error: ($v.patient.surname.$dirty && !$v.patient.surname.required)}"
                         >
                     </label>
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.name.$dirty && !$v.patient.name.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Имя</div>
                         <input
                             class="form__input"
                             placeholder="Введите имя"
                             type="text"
-                            v-model="patient.name"
+                            v-model.trim="patient.name"
+                            :class="{form__input_error: ($v.patient.name.$dirty && !$v.patient.name.required)}"
                         >
                     </label>
                     <label class="form__label">
@@ -52,28 +62,43 @@
                     </label>
                 </div>
                 <div class="form__block">
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.birthDate.$dirty && !$v.patient.birthDate.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Дата рождения</div>
                         <input 
                             class="form__input"
                             type="date"
                             v-model="patient.birthDate"
+                            :class="{form__input_error: ($v.patient.birthDate.$dirty && !$v.patient.birthDate.required)}"
                         >
                     </label>
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.phone.$dirty && !$v.patient.phone.required), form__label_error_length: ($v.patient.phone.$dirty && !$v.patient.phone.minLength)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Номер телефона</div>
                         <input
                             class="form__input"
                             placeholder="Введите номер телефона"
                             type="number"
                             v-model="patient.phone"
+                            :class="{form__input_error: ($v.patient.phone.$dirty && !$v.patient.phone.required)}"
                         >
                     </label>
                 </div>
                 <div class="form__block">
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.typeOfClient.$dirty && !$v.patient.typeOfClient.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Группа клиентов</div>
-                        <select class="form__input form__select_client" v-model="patient.type">
+                        <select
+                            class="form__input form__select_client"
+                            v-model="patient.typeOfClient"
+                            :class="{form__input_error: ($v.patient.typeOfClient.$dirty && !$v.patient.typeOfClient.required)}"
+                        >
                             <option >VIP</option>
                             <option>Проблемные</option>
                             <option>ОМС</option>
@@ -126,13 +151,17 @@
                     </label>
                 </div>
                 <div class="form__block">
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.town.$dirty && !$v.patient.town.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Город</div>
                         <input
                             class="form__input"
                             placeholder="Введите город"
                             type="text"
                             v-model="patient.town"
+                            :class="{form__input_error: ($v.patient.town.$dirty && !$v.patient.town.required)}"
                         >
                     </label>
                     <label class="form__label">
@@ -155,9 +184,16 @@
                     </label>
                 </div>
                 <div class="form__block">
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.documentType.$dirty && !$v.patient.documentType.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Тип документа</div>
-                        <select class="form__input form__select_client" v-model="patient.document">
+                        <select
+                            class="form__input form__select_client"
+                            v-model="patient.documentType"
+                            :class="{form__input_error: ($v.patient.documentType.$dirty && !$v.patient.documentType.required)}"
+                        >
                             <option>Паспорт</option>
                             <option>Свидетельство о рождении</option>
                             <option>Вод.удостоверение</option>
@@ -188,12 +224,16 @@
                             v-model="patient.issuedBy"
                         >
                     </label>
-                    <label class="form__label">
+                    <label
+                        class="form__label"
+                        :class="{form__label_error: ($v.patient.issuedDate.$dirty && !$v.patient.issuedDate.required)}"
+                    >
                         <div class="form__subtitle form__subtitle_required">Дата выдачи</div>
                         <input 
                             class="form__input"
                             type="date"
                             v-model="patient.issuedDate"
+                            :class="{form__input_error: ($v.patient.issuedDate.$dirty && !$v.patient.issuedDate.required)}"
                         >
                     </label>
                     <div class="form__button_wrapper">
@@ -207,6 +247,7 @@
                             type="submit"
                         >Сохранить</button>
                     </div>
+                    <div class="form__notice">*Поле обязательное для заполнения</div>
                 </div>
             </form>
         </div>
@@ -214,42 +255,56 @@
 </template>
 
 <script>
+    import { required, minLength } from 'vuelidate/lib/validators'
     export default {
-        data() {
-            return {
-                patient: {
-                    surname: "",
-                    name: "",
-                    patronym: "",
-                    sexM: false,
-                    sexW: false,
-                    birthDate: "",
-                    phone: null,
-                    type: "",
-                    doctor: "",
-                    sms: false,
-                    zipCode: null,
-                    country: "",
-                    region: "",
-                    town: "",
-                    street: "",
-                    house: "",
-                    document: "",
-                    documentSeries: "",
-                    documentNumber: null,
-                    issuedBy: "",
-                    issuedDate: ""
-                }
+        data: () => ({
+            patient: {
+                surname: "",
+                name: "",
+                patronym: "",
+                sexM: false,
+                sexW: false,
+                birthDate: "",
+                phone: null,
+                typeOfClient: "",
+                doctor: "",
+                sms: false,
+                zipCode: null,
+                country: "",
+                region: "",
+                town: "",
+                street: "",
+                house: "",
+                documentType: "",
+                documentSeries: "",
+                documentNumber: null,
+                issuedBy: "",
+                issuedDate: ""
+            }
+        }),
+        validations: {
+            patient: {
+                surname: {required},
+                name: {required},
+                birthDate: {required},
+                phone: {required, minLength: minLength(11)},
+                typeOfClient: {required},
+                town: {required},
+                documentType: {required},
+                issuedDate: {required}
             }
         },
         methods: {
             handleSubmit() {
-                console.log('submit!')
+                if (this.$v.$invalid) {
+                    this.$v.$touch();
+                    console.log("inside if");
+                    return;
+                };
                 console.log(this.patient)
                 this.$emit('closeFormSucces');
             },
             handleReset() {
-                console.log('reset!');
                 this.$emit('closeForm');
             }
         }

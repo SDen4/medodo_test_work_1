@@ -11,7 +11,6 @@
     export default {
         methods: {
             handleOpen() {
-                console.log("open form!!!")
                 this.$emit('openForm');
             }
         }

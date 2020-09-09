@@ -25,11 +25,9 @@
     export default {
         methods: {
             handleBack() {
-                console.log("return to open window");
                 this.$emit('returnToOpen');
             },
             handleAgain() {
-                console.log("return to new clear form");
                 this.$emit('returnToForm');
             }
         }

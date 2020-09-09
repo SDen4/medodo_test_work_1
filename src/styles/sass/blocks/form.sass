@@ -65,7 +65,7 @@
 
 .form__input
     width: 50%
-    border: 0
+    border: 1px solid transparent
     border-radius: 3px
     outline: none
     padding: 5px 10px
@@ -101,3 +101,40 @@
     width: 100%
     display: flex
     justify-content: space-between
+
+.form__label_error
+    &::after
+        background-color: $errorColor
+    &::before
+        content: "Поле обязательное для заполнения"
+        display: block
+        position: absolute
+        bottom: -21px
+        left: 0
+        font-size: $errorFortSize
+        color: $errorColor
+
+.form__label_error_length
+    &::after
+        background-color: $errorColor
+    &::before
+        content: "Введите правильный телефон"
+        display: block
+        position: absolute
+        bottom: -21px
+        left: 0
+        font-size: $errorFortSize
+        color: $errorColor
+
+
+
+.form__input_error
+    border: 1px solid $errorColor
+    &::placeholder
+        color: $errorColor
+
+.form__notice
+    width: 100%;
+    text-align: center;
+    font-size: $errorFortSize
+    color: $errorColor
