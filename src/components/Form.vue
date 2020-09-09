@@ -246,9 +246,11 @@
             handleSubmit() {
                 console.log('submit!')
                 console.log(this.patient)
+                this.$emit('closeFormSucces');
             },
             handleReset() {
-                console.log('reset!')
+                console.log('reset!');
+                this.$emit('closeForm');
             }
         }
     }

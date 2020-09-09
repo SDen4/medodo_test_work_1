@@ -1,12 +1,13 @@
 ## Denis Skryabin
 ### MEDODS
-### test work for Junior Frontend Developer
+### Test work for Junior Frontend Developer. Task 1.
 
 ### Stack:
 ```sh
 html
 sass
 vue.js
+vuelidate
 ```
 
 ### Watch on [github-pages](https://sden4.github.io/medodo_test_work_1/)

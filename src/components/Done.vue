@@ -2,7 +2,7 @@
     <div class="done">
         <div class="done__window">
             <div class="done__text">
-                Клиент успешно добавлен
+                Клиент успешно создан!
             </div>
             <div class="done__text done__text_note">
                 *данные отображены в консоли
@@ -25,10 +25,12 @@
     export default {
         methods: {
             handleBack() {
-                console.log("return to open window")
+                console.log("return to open window");
+                this.$emit('returnToOpen');
             },
             handleAgain() {
-                console.log("return to new clear form")
+                console.log("return to new clear form");
+                this.$emit('returnToForm');
             }
         }
     }
