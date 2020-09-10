@@ -49,14 +49,16 @@
                                 class="form__input form__input_radio"
                                 type="radio"
                                 name="sex"
-                                v-model="patient.sexM"
+                                value="Male"
+                                v-model="patient.sex"
                             >
                             <div class="form__subtitle_small">Ж</div>
                             <input
                                 class="form__input form__input_radio"
                                 type="radio"
                                 name="sex"
-                                v-model="patient.sexW"
+                                value="Female"
+                                v-model="patient.sex"
                             >
                         </div>
                     </label>
@@ -76,13 +78,15 @@
                     </label>
                     <label
                         class="form__label"
-                        :class="{form__label_error: ($v.patient.phone.$dirty && !$v.patient.phone.required), form__label_error_length: ($v.patient.phone.$dirty && !$v.patient.phone.minLength)}"
+                        :class="{form__label_error: ($v.patient.phone.$dirty && !$v.patient.phone.required), form__label_error_length: ($v.patient.phone.$dirty && !$v.patient.phone.between)}"
                     >
                         <div class="form__subtitle form__subtitle_required">Номер телефона</div>
                         <input
                             class="form__input"
                             placeholder="Введите номер телефона"
                             type="number"
+                            maxLength="11"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             v-model="patient.phone"
                             :class="{form__input_error: ($v.patient.phone.$dirty && !$v.patient.phone.required)}"
                         >
@@ -99,6 +103,7 @@
                             v-model="patient.typeOfClient"
                             :class="{form__input_error: ($v.patient.typeOfClient.$dirty && !$v.patient.typeOfClient.required)}"
                         >
+                            <option disabled selected value="">Выбрать группу клиентов</option>
                             <option >VIP</option>
                             <option>Проблемные</option>
                             <option>ОМС</option>
@@ -107,6 +112,7 @@
                     <label class="form__label">
                         <div class="form__subtitle">Лечащий врач</div>
                         <select class="form__input form__select_client" v-model="patient.doctor">
+                            <option disabled selected value="">Выбрать врача</option>
                             <option>Иванов</option>
                             <option>Захаров</option>
                             <option>Чернышева</option>
@@ -194,6 +200,7 @@
                             v-model="patient.documentType"
                             :class="{form__input_error: ($v.patient.documentType.$dirty && !$v.patient.documentType.required)}"
                         >
+                            <option disabled selected value="">Выбрать документ</option>
                             <option>Паспорт</option>
                             <option>Свидетельство о рождении</option>
                             <option>Вод.удостоверение</option>
@@ -219,7 +226,7 @@
                         <div class="form__subtitle">Кем выдан</div>
                         <input
                             class="form__input"
-                            placeholder="Введите номер дома"
+                            placeholder="Введите учреждение"
                             type="text"
                             v-model="patient.issuedBy"
                         >
@@ -255,17 +262,16 @@
 </template>
 
 <script>
-    import { required, minLength } from 'vuelidate/lib/validators'
+    import { required, between } from 'vuelidate/lib/validators'
     export default {
         data: () => ({
             patient: {
                 surname: "",
                 name: "",
                 patronym: "",
-                sexM: false,
-                sexW: false,
+                sex: "",
                 birthDate: "",
-                phone: null,
+                phone: 7,
                 typeOfClient: "",
                 doctor: "",
                 sms: false,
@@ -287,7 +293,7 @@
                 surname: {required},
                 name: {required},
                 birthDate: {required},
-                phone: {required, minLength: minLength(11)},
+                phone: {required, between: between(70000000000, 79999999999)},
                 typeOfClient: {required},
                 town: {required},
                 documentType: {required},
@@ -298,7 +304,6 @@
             handleSubmit() {
                 if (this.$v.$invalid) {
                     this.$v.$touch();
-                    console.log("inside if");
                     return;
                 };
                 console.log(this.patient)

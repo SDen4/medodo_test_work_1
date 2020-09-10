@@ -109,11 +109,9 @@
     height: fit-content
     border: 1px solid transparent
     border-radius: 3px
-    outline: none
+    outline-color: $mainRed
     padding: 5px 10px
     transition: $transitionDuration
-    &::placeholder
-        text-align: center
     &:hover
         background-color: $inputBGColorHover
     @include laptop
@@ -168,15 +166,13 @@
     &::after
         background-color: $errorColor
     &::before
-        content: "Введите правильный телефон"
+        content: "Введите правильный телефон. Номер должен начинаться с '7'"
         display: block
         position: absolute
         bottom: -21px
         left: 0
         font-size: $errorFortSize
         color: $errorColor
-
-
 
 .form__input_error
     border: 1px solid $errorColor
