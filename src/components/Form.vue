@@ -202,13 +202,13 @@
                     <label class="form__label">
                         <div class="form__subtitle_small">Серия</div>
                         <input
-                            class="form__input"
+                            class="form__input form__input_small"
                             type="text"
                             v-model="patient.documentSeries"
                         >
                         <div class="form__subtitle_small">Номер</div>
                         <input
-                            class="form__input form__input_small"
+                            class="form__input"
                             type="number"
                             v-model="patient.documentNumber"
                         >
@@ -236,6 +236,7 @@
                             :class="{form__input_error: ($v.patient.issuedDate.$dirty && !$v.patient.issuedDate.required)}"
                         >
                     </label>
+                    <div class="form__notice">* Поле обязательное для заполнения</div>
                     <div class="form__button_wrapper">
                         <button
                             class="button button__reset"
@@ -247,7 +248,6 @@
                             type="submit"
                         >Сохранить</button>
                     </div>
-                    <div class="form__notice">*Поле обязательное для заполнения</div>
                 </div>
             </form>
         </div>

@@ -9,12 +9,36 @@
     background-color: $formBGColor
     border: 2px solid $formBorderColor
     border-radius: 15px
+    @include desktop
+        width: 90%
+        @include tabletGRZ
+            width: 100%;
+            border: 0
+            border-radius: 0
+    @include laptop
+        width: 97%
+        @include smartphoneGRZ
+            width: 100%;
+            border: 0
+            border-radius: 0
+    @include tablet
+        width: 100%;
+        border: 0
+        border-radius: 0
+
 
 .form__wrapper
     margin: 20px
+    @include laptop
+        margin: 15px 10px
+    @include smartphone
+        margin: 10px 3px
 
 .form__title
-    margin-bottom: 40px
+    line-height: 30px
+    margin-bottom: 30px
+    @include tablet
+        text-align: center
 
 .form__form
     display: flex
@@ -26,15 +50,24 @@
     display: flex
     justify-content: space-between
     flex-wrap: wrap
-    margin: 0 30px 20px
+    margin: 0 30px 15px
     &:last-child
         margin: 0 30px
+    @include laptop
+        margin: 0 15px 15px;
+        &:last-child
+            margin: 0 15px
+    @include tablet
+        flex-direction: column;
+    @include smartphone
+        margin: 0 5px 15px;
 
 .form__label
     display: flex
     justify-content: space-between
+    align-items: center
     position: relative
-    width: 47%
+    width: 48%
     margin-bottom: 30px
     &::after
         content: ""
@@ -45,13 +78,21 @@
         position: absolute
         bottom: -7px
         left: 0
+    @include tablet
+        width: 100%
 
 .form__label_checkbox
-    width: 24%
+    width: 35%
+    @include tablet
+        width: 75%
 
 .form__subtitle
     position: relative
     margin-right: 20px
+    @include smartphone
+        font-size: 15px
+    @include phone
+        width: min-content;
 
 .form__subtitle_required
     &::after
@@ -65,6 +106,7 @@
 
 .form__input
     width: 50%
+    height: fit-content
     border: 1px solid transparent
     border-radius: 3px
     outline: none
@@ -74,6 +116,8 @@
         text-align: center
     &:hover
         background-color: $inputBGColorHover
+    @include laptop
+        width: 48%
 
 .form__input_checkbox
     width: fit-content
@@ -86,6 +130,8 @@
     display: flex
     width: 50%
     padding: 5px 20px 5px 0;
+    @include laptop
+        padding: 5px 12px 5px 0;
 
 .form__subtitle_small
     margin-right: 10px
@@ -93,9 +139,13 @@
 .form__select_client
     width: 54%
     background-color: $selectBGColor
+    @include tablet
+        width: 52%
 
 .form__input_small
     margin-right: 40px
+    @include smartphone
+        margin-right: 15px;
 
 .form__button_wrapper
     width: 100%
@@ -134,7 +184,6 @@
         color: $errorColor
 
 .form__notice
-    width: 100%;
-    text-align: center;
-    font-size: $errorFortSize
+    font-size: $noticeFontSize
     color: $errorColor
+    margin-bottom: 20px;

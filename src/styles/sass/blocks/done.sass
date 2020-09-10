@@ -10,17 +10,22 @@
     flex-direction: column
     justify-content: center
     align-items: center
-    width: 30%
-    height: 30%
+    width: 385px
+    height: 290px
     background-color: $formBGColor
     border: 2px solid $formBorderColor
     border-radius: 15px
+    @include smartphone
+        width: 310px
+        height: 290px
 
 .done__text
     width: 80%
     margin-bottom: 5px
     text-align: center
     font-size: 24px
+    @include smartphone
+        width: 95%
 
 .done__text_note
     font-size: 12px
@@ -32,3 +37,5 @@
     display: flex
     flex-direction: column
     justify-content: space-between
+    @include smartphone
+        width: 95%
