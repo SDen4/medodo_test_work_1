@@ -269,7 +269,7 @@
                 surname: "",
                 name: "",
                 patronym: "",
-                sex: "",
+                sex: "not provided",
                 birthDate: "",
                 phone: 7,
                 typeOfClient: "",
