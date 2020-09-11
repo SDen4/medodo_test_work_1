@@ -210,12 +210,14 @@
                         <div class="form__subtitle_small">Серия</div>
                         <input
                             class="form__input form__input_small"
+                            placeholder="Введите серию"
                             type="text"
                             v-model="patient.documentSeries"
                         >
                         <div class="form__subtitle_small">Номер</div>
                         <input
                             class="form__input"
+                            placeholder="Введите номер"
                             type="number"
                             v-model="patient.documentNumber"
                         >

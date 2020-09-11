@@ -11,7 +11,7 @@
                 <button 
                     class="button button__submit"
                     @click="handleBack"
-                >Назад</button>
+                >На главную</button>
                 <button 
                     class="button button__submit"
                     @click="handleAgain"
