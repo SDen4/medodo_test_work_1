@@ -78,7 +78,8 @@
                     </label>
                     <label
                         class="form__label"
-                        :class="{form__label_error: ($v.patient.phone.$dirty && !$v.patient.phone.required), form__label_error_length: ($v.patient.phone.$dirty && !$v.patient.phone.between)}"
+                        :class="{form__label_error: ($v.patient.phone.$dirty && !$v.patient.phone.required), 
+                                form__label_error_length: ($v.patient.phone.$dirty && !$v.patient.phone.between)}"
                     >
                         <div class="form__subtitle form__subtitle_required">Номер телефона</div>
                         <input
@@ -86,7 +87,7 @@
                             placeholder="Введите номер телефона"
                             type="number"
                             maxLength="11"
-                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             v-model="patient.phone"
                             :class="{form__input_error: ($v.patient.phone.$dirty && !$v.patient.phone.required)}"
                         >
