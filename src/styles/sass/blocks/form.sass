@@ -81,6 +81,14 @@
     @include tablet
         width: 100%
 
+.form__label_multi
+    &:hover
+        &:after
+            content: 'Для выбора нескольких категорий используйте "ctrl"'
+            display: block
+            font-size: $errorFortSize
+            color: $errorColor
+
 .form__label_checkbox
     width: 35%
     @include tablet
@@ -139,6 +147,11 @@
     background-color: $selectBGColor
     @include tablet
         width: 52%
+
+.form__select_client_multi
+    overflow-y: auto;
+    transition: $transitionDuration
+
 
 .form__input_small
     margin-right: 40px

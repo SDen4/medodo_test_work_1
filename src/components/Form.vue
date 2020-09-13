@@ -95,17 +95,18 @@
                 </div>
                 <div class="form__block">
                     <label
-                        class="form__label"
+                        class="form__label form__label_multi"
                         :class="{form__label_error: ($v.patient.typeOfClient.$dirty && !$v.patient.typeOfClient.required)}"
                     >
                         <div class="form__subtitle form__subtitle_required">Группа клиентов</div>
                         <select
-                            class="form__input form__select_client"
+                            multiple
+                            size="3"
+                            class="form__input form__select_client form__select_client_multi"
                             v-model="patient.typeOfClient"
                             :class="{form__input_error: ($v.patient.typeOfClient.$dirty && !$v.patient.typeOfClient.required)}"
                         >
-                            <option disabled selected value="">Выбрать группу клиентов</option>
-                            <option >VIP</option>
+                            <option>VIP</option>
                             <option>Проблемные</option>
                             <option>ОМС</option>
                         </select>
@@ -275,7 +276,7 @@
                 sex: "not provided",
                 birthDate: "",
                 phone: 7,
-                typeOfClient: "",
+                typeOfClient: ["VIP", "ОМС"],
                 doctor: "",
                 sms: false,
                 zipCode: null,
